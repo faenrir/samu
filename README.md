@@ -1,8 +1,10 @@
 # SAMU
 
-`samu` is a fork of Dylan Araps's [sowm](https://github.com/dylanaraps/sowm) with many fixes and new features. It's a tiny wm for the Xorg Server. Works on any GNU/Linux or BSD distro with X11.
+`samu` is my personal fork of Dylan Araps's [sowm](https://github.com/dylanaraps/sowm) with many fixes and new features. It's a tiny wm for the Xorg Server. Works on any GNU/Linux or BSD distro with X11.
 
-> date +"%Y is the year of the `uname -o` desktop"
+```bash
+date +"%Y is the year of the `uname -o` desktop"
+```
 
 ## Features
 
