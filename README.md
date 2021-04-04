@@ -12,7 +12,7 @@ date +"%Y is the year of the `uname -o` desktop"
 
 - multi monitor support
 - window borders with active/inactive colors
-   <a href="https://user-images.githubusercontent.com/81267840/112312925-a1635200-8ca7-11eb-8505-dcab972b15b1.png"><img src="https://user-images.githubusercontent.com/81267840/112312925-a1635200-8ca7-11eb-8505-dcab972b15b1.png" width="43%" align="right"></a>
+  <a href="https://user-images.githubusercontent.com/81267840/112312925-a1635200-8ca7-11eb-8505-dcab972b15b1.png"><img src="https://user-images.githubusercontent.com/81267840/112312925-a1635200-8ca7-11eb-8505-dcab972b15b1.png" width="43%" align="right"></a>
 - alternatively no window borders
 - awesome keyboard & mouse workflow
 - full keyboard-only control possible
@@ -38,6 +38,10 @@ See [config.h](config.h)
 - `xlib` (_usually `libX11`_).
 - `lXinerama` (_usually `libXinerama`_).
 - `lXext` (_usually `libXext`_).
+
+## Experiments
+
+Check out the [branch](https://github.com/faenrir/samu/tree/experiments)
 
 ## Installation
 
