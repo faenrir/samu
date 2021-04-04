@@ -4,10 +4,10 @@
 #define MOD Mod4Mask
 
 #define BORDER_COLOR "#706e86"
-//#define BORDER_COLOR_ACTIVE "#9ccfd8"
-//#define BORDER_COLOR_INACTIVE "#6e6a86"
-#define BORDER_COLOR_ACTIVE "#3f51b5"
-#define BORDER_COLOR_INACTIVE "#080808"
+#define BORDER_COLOR_ACTIVE "#9ccfd8"
+#define BORDER_COLOR_INACTIVE "#6e6a86"
+//#define BORDER_COLOR_ACTIVE "#3f51b5"
+//#define BORDER_COLOR_INACTIVE "#080808"
 #define BORDER_WIDTH 2
 
 // Shell functions
