@@ -409,7 +409,7 @@ void ws_prev(const Arg arg) {
 	int tmp = ws;
 	int nws = tmp - arg.i;
 
-	if (ws == 0) return;
+	if (ws == 1) return;
 
 	ws_save(ws);
 	ws_sel(nws);
