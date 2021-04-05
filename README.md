@@ -41,6 +41,8 @@ See [config.h](config.h)
 
 ## Experiments
 
+As of version 1.1 samu is feature complete & rock solid. There will be no updates anymore. Only some experiments:
+
 Check out the [branch](https://github.com/faenrir/samu/tree/experiments)
 
 ## Installation
