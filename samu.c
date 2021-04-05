@@ -367,6 +367,13 @@ void win_next(const Arg arg) {
     win_focus(cur->next);
 }
 
+void ws_file() {
+    FILE *fp = fopen("/tmp/ws", "w");
+    fprintf(fp, "%d", ws);
+    fclose(fp);
+    return;
+}
+
 void ws_go(const Arg arg) {
     int tmp = ws;
 
@@ -384,10 +391,7 @@ void ws_go(const Arg arg) {
     ws_sel(arg.i);
 
     if (list) win_focus(list); else cur = 0;
-
-    FILE *fp = fopen("/tmp/ws", "w");
-    fprintf(fp, "%d", ws);
-    fclose(fp);
+    ws_file();
 }
 
 void ws_next(const Arg arg) {
@@ -408,6 +412,7 @@ void ws_next(const Arg arg) {
 	ws_sel(nws);
 
 	if (list) win_focus(list); else cur = 0;
+	ws_file();
 }
 
 void ws_prev(const Arg arg) {
@@ -428,6 +433,7 @@ void ws_prev(const Arg arg) {
 	ws_sel(nws);
 
 	if (list) win_focus(list); else cur = 0;
+	ws_file();
 }
 
 void configure_request(XEvent *e) {
