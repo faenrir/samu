@@ -371,7 +371,6 @@ void ws_file() {
     FILE *fp = fopen("/tmp/ws", "w");
     fprintf(fp, "%d", ws);
     fclose(fp);
-    return;
 }
 
 void ws_go(const Arg arg) {
