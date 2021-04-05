@@ -1,6 +1,6 @@
 #include <X11/Xlib.h>
 
-#define NUM_WS 3
+#define NUM_WS 4
 #define win        (client *t=0, *c=list; c && t!=list->prev; t=c, c=c->next)
 #define ws_save(W) ws_list[W] = list
 #define ws_sel(W)  list = ws_list[ws = W]

@@ -128,12 +128,12 @@ static struct key keys[] = {
     {MOD, XK_x, run, {.com = winBr}},
     {MOD, XK_x, win_raise, {0}}, 
 
-    {MOD,           XK_1, ws_go,     {.i = 0}},
-    {MOD|ShiftMask, XK_1, win_to_ws, {.i = 0}},
-    {MOD,           XK_2, ws_go,     {.i = 1}},
-    {MOD|ShiftMask, XK_2, win_to_ws, {.i = 1}},
-    {MOD,           XK_3, ws_go,     {.i = 2}},
-    {MOD|ShiftMask, XK_3, win_to_ws, {.i = 2}},
+    {MOD,           XK_1, ws_go,     {.i = 1}},
+    {MOD|ShiftMask, XK_1, win_to_ws, {.i = 1}},
+    {MOD,           XK_2, ws_go,     {.i = 2}},
+    {MOD|ShiftMask, XK_2, win_to_ws, {.i = 2}},
+    {MOD,           XK_3, ws_go,     {.i = 3}},
+    {MOD|ShiftMask, XK_3, win_to_ws, {.i = 3}},
 
     {0, XF86XK_Forward, ws_next, {.i = 1}},
     {0, XF86XK_Back, ws_prev, {.i = 1}},

@@ -176,6 +176,18 @@ void win_init(void) {
         XMapWindow(d, child[i]);
         win_add(child[i]);
     }
+    int tmp = ws;
+
+    ws_save(ws);
+    ws_sel(1);
+
+    for win XMapWindow(d, c->w);
+
+    ws_sel(tmp);
+
+    for win XUnmapWindow(d, c->w);
+
+    ws_sel(1);
 }
 
 void win_add(Window w) {
@@ -340,6 +352,7 @@ void win_to_ws(const Arg arg) {
 
 void win_prev(const Arg arg) {
     if (!cur) return;
+    if (list == 0) return;
 
     XRaiseWindow(d, cur->prev->w);
     win_focus(cur->prev);
@@ -347,6 +360,7 @@ void win_prev(const Arg arg) {
 
 void win_next(const Arg arg) {	
     if (!cur) return;
+    if (list == 0) return;
 
     XRaiseWindow(d, cur->next->w);
     win_focus(cur->next);
@@ -375,7 +389,7 @@ void ws_next(const Arg arg) {
 	int tmp = ws;
 	int nws = tmp + arg.i;
 
-	if (ws == 2) return;
+	if (ws == NUM_WS-1) return;
 
 	ws_save(ws);
 	ws_sel(nws);
