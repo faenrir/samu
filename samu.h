@@ -81,4 +81,7 @@ void ws_prev(const Arg arg);
 unsigned long getcolor(const char *col);
 bool exists_win(Window w);
 
+int fputc( int c, FILE *fp );
+int fputs( const char *s, FILE *fp );
+
 static int xerror() { return 0; }

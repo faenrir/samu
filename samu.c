@@ -7,6 +7,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "samu.h"
 
@@ -383,6 +384,10 @@ void ws_go(const Arg arg) {
     ws_sel(arg.i);
 
     if (list) win_focus(list); else cur = 0;
+
+    FILE *fp = fopen("/tmp/ws", "w");
+    fprintf(fp, "%d", ws);
+    fclose(fp);
 }
 
 void ws_next(const Arg arg) {
