@@ -31,14 +31,22 @@ static struct key keys[] = {
     //{MOD,  XK_h,  win_half,  {.com = (const char*[]){"w"}}},
 
     {MOD, XK_Up, win_move, {.com = (const char*[]){"move",   "n"}, .i = 50}},
+    {MOD, XK_Up, win_raise, {0}},
     {MOD, XK_Down, win_move, {.com = (const char*[]){"move",   "s"}, .i = 50}},
+    {MOD, XK_Down, win_raise, {0}},
     {MOD, XK_Right, win_move, {.com = (const char*[]){"move",   "e"}, .i = 50}},
+    {MOD, XK_Right, win_raise, {0}},
     {MOD, XK_Left, win_move, {.com = (const char*[]){"move",   "w"}, .i = 50}},
+    {MOD, XK_Left, win_raise, {0}},
 
     {MOD|ShiftMask, XK_Up, win_move, {.com = (const char*[]){"resize",   "n"}, .i = 50}},
+    {MOD|ShiftMask, XK_Up, win_raise, {0}},
     {MOD|ShiftMask, XK_Down, win_move, {.com = (const char*[]){"resize",   "s"}, .i = 50}},
+    {MOD|ShiftMask, XK_Down, win_raise, {0}},
     {MOD|ShiftMask, XK_Right, win_move, {.com = (const char*[]){"resize",   "e"}, .i = 50}},
+    {MOD|ShiftMask, XK_Right, win_raise, {0}},
     {MOD|ShiftMask, XK_Left, win_move, {.com = (const char*[]){"resize",   "w"}, .i = 50}},
+    {MOD|ShiftMask, XK_Left, win_raise, {0}},
 
     {MOD,           XK_Tab, win_next,   {0}},
     {MOD|ShiftMask, XK_Tab, win_prev,   {0}},
