@@ -46,6 +46,8 @@ void win_move(const Arg arg) {
         wy + (r ? 0 : m == 'n' ? -arg.i : m == 's' ?  arg.i : 0),
         MAX(10, ww + (r ? m == 'e' ?  arg.i : m == 'w' ? -arg.i : 0 : 0)),
         MAX(10, wh + (r ? m == 'n' ? -arg.i : m == 's' ?  arg.i : 0 : 0)));
+
+    XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
 
 void win_move_mouse(const Arg arg) {
@@ -165,6 +167,12 @@ void button_release(XEvent *e) {
     mouse.subwindow = 0;
 }
 
+void ws_file() {
+    FILE *fp = fopen("/tmp/ws", "w");
+    fprintf(fp, "%d", ws);
+    fclose(fp);
+}
+
 void win_init(void) {
     Window *child;
     unsigned int i, n_child;
@@ -181,6 +189,7 @@ void win_init(void) {
 
     ws_save(ws);
     ws_sel(1);
+    ws_file();
 
     for win XMapWindow(d, c->w);
 
@@ -269,7 +278,6 @@ int multimonitor_action (int action) { // action = 0 -> center; action = 1 -> fs
 
 void win_center(const Arg arg) {
     if (!cur) return;
-    /*if (ww >= 1000 || wh >= 1000) XResizeWindow(d, cur->w, 1000, 1000);*/
 
     win_size(cur->w, &(int){0}, &(int){0}, &ww, &wh);
     if (multimonitor_action(0)) {
@@ -365,12 +373,6 @@ void win_next(const Arg arg) {
 
     XRaiseWindow(d, cur->next->w);
     win_focus(cur->next);
-}
-
-void ws_file() {
-    FILE *fp = fopen("/tmp/ws", "w");
-    fprintf(fp, "%d", ws);
-    fclose(fp);
 }
 
 void ws_go(const Arg arg) {
@@ -471,7 +473,7 @@ void map_request(XEvent *e) {
     win_add(w);
     cur = list->prev;
     
-     if (wx + wy == 0 || ww >= 600) win_center((Arg){0}); 
+     if (wx + wy == 0) win_center((Arg){0}); 
     /*win_center((Arg){0});*/
 
     XMapWindow(d, w);
