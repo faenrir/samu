@@ -285,6 +285,7 @@ void win_center(const Arg arg) {
     }
 
     win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
+    XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
 
 void win_up(const Arg arg) {
@@ -365,6 +366,8 @@ void win_prev(const Arg arg) {
 
     XRaiseWindow(d, cur->prev->w);
     win_focus(cur->prev);
+    win_size(cur->w, &wx, &wy, &ww, &wh);
+    XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
 
 void win_next(const Arg arg) {	
@@ -373,6 +376,8 @@ void win_next(const Arg arg) {
 
     XRaiseWindow(d, cur->next->w);
     win_focus(cur->next);
+    win_size(cur->w, &wx, &wy, &ww, &wh);
+    XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
 
 void ws_go(const Arg arg) {

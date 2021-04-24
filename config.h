@@ -8,7 +8,7 @@
 //#define BORDER_COLOR_INACTIVE "#6e6a86"
 #define BORDER_COLOR_ACTIVE "#3f51b5"
 #define BORDER_COLOR_INACTIVE "#080808"
-#define BORDER_WIDTH 0
+#define BORDER_WIDTH 2
 
 const char* snapLeft[]    = {"snap.sh", "left", 0};
 const char* snapRight[]    = {"snap.sh", "right", 0};
