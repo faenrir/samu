@@ -70,7 +70,7 @@ void win_half(const Arg arg) {
 unsigned long getcolor(const char *col) {
     Colormap m = DefaultColormap(d, s);
     XColor c;
-    return (!XAllocNamedColor(d, m, col, &c, &c)) ? 0 : c.pixel;
+    return (!XAllocNamedColor(d, m, col, &c, &c)) ? 0 : c.pixel | (0xffu << 24);
 }
 
 void win_border(Window w, const char *col) {
@@ -284,8 +284,8 @@ void win_center(const Arg arg) {
         XMoveWindow(d, cur->w, (sw - ww) / 2, (sh - wh) / 2);
     }
 
-    win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
-    XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
+    /*win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);*/
+    /*XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);*/
 }
 
 void win_up(const Arg arg) {
