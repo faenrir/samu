@@ -276,7 +276,7 @@ int multimonitor_action (int action) { // action = 0 -> center; action = 1 -> fs
     return 0;
 }
 
-void win_center(const Arg arg) {
+void win_center(const Arg arg, bool m) {
     if (!cur) return;
 
     win_size(cur->w, &(int){0}, &(int){0}, &ww, &wh);
@@ -284,8 +284,11 @@ void win_center(const Arg arg) {
         XMoveWindow(d, cur->w, (sw - ww) / 2, (sh - wh) / 2);
     }
 
-    /*win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);*/
-    /*XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);*/
+    if(m) {
+        win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
+        XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
+    }
+
 }
 
 void win_up(const Arg arg) {
@@ -478,7 +481,7 @@ void map_request(XEvent *e) {
     win_add(w);
     cur = list->prev;
     
-     if (wx + wy == 0) win_center((Arg){0}); 
+     if (wx + wy == 0) win_center((Arg){0},false); 
     /*win_center((Arg){0});*/
 
     XMapWindow(d, w);

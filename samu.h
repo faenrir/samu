@@ -54,7 +54,7 @@ void notify_motion(XEvent *e);
 void run(const Arg arg);
 void win_init(void);
 void win_add(Window w);
-void win_center(const Arg arg);
+void win_center(const Arg arg, bool m);
 void win_up(const Arg arg);
 void win_down(const Arg arg);
 void win_right(const Arg arg);

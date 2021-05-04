@@ -4,13 +4,9 @@
 #define MOD Mod4Mask
 
 #define BORDER_COLOR "#706e86"
-//#define BORDER_COLOR_ACTIVE "#9ccfd8"
-//#define BORDER_COLOR_INACTIVE "#6e6a86"
-//#define BORDER_COLOR_ACTIVE "#3f51b5"
-//#define BORDER_COLOR_INACTIVE "#080808"
-#define BORDER_COLOR_ACTIVE "#3584e4"
-#define BORDER_COLOR_INACTIVE "#eeeeee"
-#define BORDER_WIDTH 2
+#define BORDER_COLOR_ACTIVE "#8888cc"
+#define BORDER_COLOR_INACTIVE "#222222"
+#define BORDER_WIDTH 3
 
 const char* snapLeft[]    = {"snap.sh", "left", 0};
 const char* snapRight[]    = {"snap.sh", "right", 0};
@@ -23,7 +19,7 @@ const char* winBr[]    = {"snap.sh", "br", 0};
 
 static struct key keys[] = {
     {MOD,      XK_q,   win_kill,   {0}},
-    {MOD,      XK_c,   win_center, {0}},
+    {MOD,      XK_c,   win_center, {0}, true},
     {MOD,      XK_c,    win_raise, {0}},
     {MOD,      XK_f,   win_fs,     {0}},
 
