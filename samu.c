@@ -120,6 +120,7 @@ void notify_enter(XEvent *e) {
 
 void notify_motion(XEvent *e) {
     if (!mouse.subwindow || !drag || cur->f) return;
+    if (cur->f == 1) return;
 
     while(XCheckTypedEvent(d, MotionNotify, e));
     while(XCheckTypedWindowEvent(d, mouse.subwindow, MotionNotify, e));
@@ -251,25 +252,22 @@ void win_kill(const Arg arg) {
     XSendEvent(d, cur->w, False, NoEventMask, &ev);
 }
 
-int multimonitor_action (int action) { // action = 0 -> center; action = 1 -> fs
+int multimonitor_center_fs (int fs) {
     if (!XineramaIsActive(d)) return 1;
-    XineramaScreenInfo *si = XineramaQueryScreens(d, &monitors);
+    XineramaScreenInfo *screen_info = XineramaQueryScreens(d, &monitors);
     for (int i = 0; i < monitors; i++) {
-        if ((cur->wx + (cur->ww/2) >= (unsigned int)si[i].x_org
-                && cur->wx + (cur->ww/2) < (unsigned int)si[i].x_org + si[i].width)
-            && ( cur->wy + (cur->wh/2) >= (unsigned int)si[i].y_org
-                && cur->wy + (cur->wh/2) < (unsigned int)si[i].y_org + si[i].height)) {
-            if (action) {
+        if ((cur->wx >= screen_info[i].x_org && cur->wx < screen_info[i].x_org + screen_info[i].width)
+            && (cur->wy >= screen_info[i].y_org && cur->wy < screen_info[i].y_org + screen_info[i].height)) {
+            if (fs) {
                 XMoveResizeWindow(d, cur->w,
-                                  si[i].x_org, si[i].y_org,
-                                  si[i].width, si[i].height);
-	        XConfigureWindow(d, cur->w, CWBorderWidth,
-		     	        &(XWindowChanges){.border_width = 0});
-	    }
-            else
+                                  screen_info[i].x_org, screen_info[i].y_org,
+                                  screen_info[i].width, screen_info[i].height);
+                XConfigureWindow(d, cur->w, CWBorderWidth,
+                                  &(XWindowChanges){.border_width = 0}); 
+            } else
                 XMoveWindow(d, cur->w,
-                            si[i].x_org + ((si[i].width - ww)/2),
-                            si[i].y_org + ((si[i].height -wh)/2));
+                        screen_info[i].x_org + ((screen_info[i].width  - ww) / 2),
+                        screen_info[i].y_org + ((screen_info[i].height - wh) / 2));
             break;
         }
     }
@@ -279,13 +277,14 @@ int multimonitor_action (int action) { // action = 0 -> center; action = 1 -> fs
 void win_center(const Arg arg, bool m) {
     if (!cur) return;
 
-    win_size(cur->w, &(int){0}, &(int){0}, &ww, &wh);
-    if (multimonitor_action(0)) {
+    win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
+
+    if (multimonitor_center_fs(0))
         XMoveWindow(d, cur->w, (sw - ww) / 2, (sh - wh) / 2);
-    }
+
+    win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
 
     if(m) {
-        win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
         XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
     }
 
@@ -331,18 +330,16 @@ void win_fs(const Arg arg) {
     if (!cur) return;
 
     if ((cur->f = cur->f ? 0 : 1)) {
-	win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
-        if(multimonitor_action(1)) {
-		XMoveResizeWindow(d, cur->w, 0, 0, sw, sh);
-		XConfigureWindow(d, cur->w, CWBorderWidth,
-				&(XWindowChanges){.border_width = 0});
+        win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
+        if(multimonitor_center_fs(1)) {
+            XMoveResizeWindow(d, cur->w, 0, 0, sw, sh);
+            XConfigureWindow(d, cur->w, CWBorderWidth,
+                    &(XWindowChanges){.border_width = 0});
         }
-		/*XConfigureWindow(d, cur->w, CWBorderWidth,*/
-				/*&(XWindowChanges){.border_width = 0});*/
     } else {
-	XMoveResizeWindow(d, cur->w, cur->wx, cur->wy, cur->ww, cur->wh);
-	XConfigureWindow(d, cur->w, CWBorderWidth,
-			&(XWindowChanges){.border_width = BORDER_WIDTH});
+        XMoveResizeWindow(d, cur->w, cur->wx, cur->wy, cur->ww, cur->wh);
+        XConfigureWindow(d, cur->w, CWBorderWidth,
+                &(XWindowChanges){.border_width = BORDER_WIDTH});
     }
 }
 
@@ -480,9 +477,8 @@ void map_request(XEvent *e) {
     win_size(w, &wx, &wy, &ww, &wh);
     win_add(w);
     cur = list->prev;
-    
-     if (wx + wy == 0) win_center((Arg){0},false); 
-    /*win_center((Arg){0});*/
+
+    if (wx + wy == 0) win_center((Arg){0},false); 
 
     XMapWindow(d, w);
     win_focus(list->prev);
