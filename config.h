@@ -3,10 +3,9 @@
 
 #define MOD Mod4Mask
 
-#define BORDER_COLOR "#706e86"
-#define BORDER_COLOR_ACTIVE "#8888cc"
-#define BORDER_COLOR_INACTIVE "#222222"
-#define BORDER_WIDTH 3
+#define BORDER_COLOR_ACTIVE "#56949f"
+#define BORDER_COLOR_INACTIVE "#6e6a86"
+#define BORDER_WIDTH 2
 
 const char* snapLeft[]    = {"snap.sh", "left", 0};
 const char* snapRight[]    = {"snap.sh", "right", 0};
@@ -22,6 +21,7 @@ static struct key keys[] = {
     {MOD,      XK_c,   win_center, {0}, true},
     {MOD,      XK_c,    win_raise, {0}},
     {MOD,      XK_f,   win_fs,     {0}},
+    {MOD,      XK_f,   win_raise,     {0}},
 
     //{MOD,  XK_k,  win_half,  {.com = (const char*[]){"n"}}},
     //{MOD,  XK_j,  win_half,  {.com = (const char*[]){"s"}}},
@@ -106,13 +106,10 @@ static struct button buttons[] = {
      {MOD, Button3, win_raise, {0}}, 
      {MOD, Button3, win_resize, {0}},
      
-     {MOD|Mod1Mask, Button1, win_lower, {0}},
+     {MOD, Button2, win_lower, {0}},
      {Mod1Mask, Button1, win_lower, {0}},
-
-     {MOD|ShiftMask, Button3, win_raise, {0}},
-     {MOD|ShiftMask, Button3, win_fs, {0}},
+     {MOD|ShiftMask, Button3, win_lower, {0}},
      
-     {MOD|ShiftMask, Button2, win_kill, {0}},
 };
 
 #endif

@@ -8,7 +8,7 @@ date +"%Y is the year of the `uname -o` desktop"
 
 ## Features
 
-`samu` is tested and stable. Combine it with other applications following the UNIX philosophy to create a full desktop system.
+`samu` is getting ewmh support! Combine it with other applications following the UNIX philosophy to create a full desktop system.
 
 - multi monitor support
 - window borders with active/inactive colors
@@ -40,8 +40,6 @@ See [config.h](config.h)
 - `lXext` (_usually `libXext`_).
 
 ## Experiments
-
-As of version 1.1 samu is feature complete & rock solid. There will be no updates anymore. Only some experiments:
 
 Check out the [branch](https://github.com/faenrir/samu/tree/experiments)
 

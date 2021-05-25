@@ -3,6 +3,7 @@ CFLAGS += -Wmissing-prototypes -Wno-unused-parameter
 PREFIX ?= /usr
 BINDIR ?= $(PREFIX)/bin
 CC     ?= gcc
+LDFLAGS = -lX11 -lxcb -lX11-xcb -lXext -lxcb-ewmh -lXinerama
 
 all: config.h samu
 
@@ -10,7 +11,7 @@ config.h:
 	cp config.def.h config.h
 
 samu: 
-	$(CC) -O3 $(CFLAGS) -o samu samu.c -lX11 -lXext -lXinerama $(LDFLAGS)
+	$(CC) -O3 $(CFLAGS) -o samu samu.c $(LDFLAGS)
 
 install: all
 	install -Dm755 samu $(DESTDIR)$(BINDIR)/samu

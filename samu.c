@@ -9,7 +9,14 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include <xcb/xcb.h>
+#include <xcb/xproto.h>
+#include <X11/Xlib-xcb.h>
+#include <xcb/xcb_ewmh.h>
+
+#include "types.h"
 #include "samu.h"
+#include "config.h"
 
 static client       *list = {0}, *ws_list[NUM_WS] = {0}, *cur;
 static int          ws = 0, sw, sh, wx, wy, numlock = 0, monitors;
@@ -34,6 +41,23 @@ static void (*events[LASTEvent])(XEvent *e) = {
 };
 
 #include "config.h"
+
+void
+ewmh_init(void)
+{
+	// thanks 2bwm :P
+	if (!(ewmh = calloc(1, sizeof(xcb_ewmh_connection_t)))) {
+		EPRINT("bunnywm: error: failed to calloc() for EWMH:");
+		perror("calloc()");
+		return;
+	}
+
+	xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(con, ewmh);
+	if (!xcb_ewmh_init_atoms_replies(ewmh, cookie, (void*) 0)) {
+		EPRINT("bunnywm: error: failed to initialize EWMH.\n");
+		exit(1);
+	}
+}
 
 void win_move(const Arg arg) {
     int  r = arg.com[0][0] == 'r';
@@ -287,7 +311,6 @@ void win_center(const Arg arg, bool m) {
     if(m) {
         XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
     }
-
 }
 
 void win_up(const Arg arg) {
@@ -370,7 +393,7 @@ void win_prev(const Arg arg) {
     XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
 
-void win_next(const Arg arg) {	
+void win_next(const Arg arg) {
     if (!cur) return;
     if (list == 0) return;
 
@@ -398,6 +421,8 @@ void ws_go(const Arg arg) {
 
     if (list) win_focus(list); else cur = 0;
     ws_file();
+
+    xcb_ewmh_set_current_desktop(ewmh, 0, ws);
 }
 
 void ws_next(const Arg arg) {
@@ -419,6 +444,8 @@ void ws_next(const Arg arg) {
 
 	if (list) win_focus(list); else cur = 0;
 	ws_file();
+
+  xcb_ewmh_set_current_desktop(ewmh, 0, ws);
 }
 
 void ws_prev(const Arg arg) {
@@ -440,6 +467,8 @@ void ws_prev(const Arg arg) {
 
 	if (list) win_focus(list); else cur = 0;
 	ws_file();
+
+  xcb_ewmh_set_current_desktop(ewmh, 0, ws);
 }
 
 void configure_request(XEvent *e) {
@@ -530,13 +559,33 @@ int main(void) {
 
     int s = DefaultScreen(d);
     root  = RootWindow(d, s);
+    /*Window root = screen->root;*/
     sw    = XDisplayWidth(d, s);
     sh    = XDisplayHeight(d, s);
 
     XSelectInput(d,  root, SubstructureRedirectMask);
     XDefineCursor(d, root, XCreateFontCursor(d, 68));
     input_grab(root);
+
     win_init();
+
+    // setup EWMH garbage
+    con         = XGetXCBConnection(d);
+	  ewmh_init();
+	  xcb_ewmh_set_wm_pid(ewmh, root, getpid());
+	  xcb_ewmh_set_wm_name(ewmh, root, 7, "samu");
+	  xcb_atom_t net_atoms[] = {
+		  ewmh->_NET_WM_PID,
+		  ewmh->_NET_WM_NAME,
+		  ewmh->_NET_CURRENT_DESKTOP,
+		  ewmh->_NET_NUMBER_OF_DESKTOPS
+	  };
+
+	  xcb_ewmh_set_supported(ewmh, 0,
+			  4, 	// length of net_atoms
+		  	net_atoms);
+	  xcb_ewmh_set_current_desktop(ewmh, 0, ws);
+	  xcb_ewmh_set_number_of_desktops(ewmh, 0, NUM_WS);
 
     while (1 && !XNextEvent(d, &ev)) // 1 && will forever be here.
         if (events[ev.type]) events[ev.type](&ev);

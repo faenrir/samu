@@ -1,5 +1,8 @@
 #include <X11/Xlib.h>
 
+#include "types.h"
+#include <xcb/xcb.h>
+
 #define NUM_WS 11
 #define win        (client *t=0, *c=list; c && t!=list->prev; t=c, c=c->next)
 #define ws_save(W) ws_list[W] = list
@@ -80,5 +83,15 @@ void ws_next(const Arg arg);
 void ws_prev(const Arg arg);
 unsigned long getcolor(const char *col);
 bool exists_win(Window w);
+
+static void ewmh_init(void);
+xcb_ewmh_connection_t         *ewmh;
+static xcb_connection_t       *con;
+static const xcb_setup_t      *setup;
+static xcb_screen_iterator_t  it;
+static xcb_screen_t           *screen;
+
+#define EPRINT(...) fprintf(stderr, __VA_ARGS__);
+
 
 static int xerror() { return 0; }
