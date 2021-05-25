@@ -93,3 +93,5 @@ EndSection
 ## Thanks
 
 based on the great [sowm](https://github.com/dylanaraps/sowm)
+
+and thanks to [bunnywm](https://github.com/kiedtl/bunnywm)

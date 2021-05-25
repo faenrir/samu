@@ -47,14 +47,14 @@ ewmh_init(void)
 {
 	// thanks 2bwm :P
 	if (!(ewmh = calloc(1, sizeof(xcb_ewmh_connection_t)))) {
-		EPRINT("bunnywm: error: failed to calloc() for EWMH:");
+		EPRINT("samu: error: failed to calloc() for EWMH:");
 		perror("calloc()");
 		return;
 	}
 
 	xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(con, ewmh);
 	if (!xcb_ewmh_init_atoms_replies(ewmh, cookie, (void*) 0)) {
-		EPRINT("bunnywm: error: failed to initialize EWMH.\n");
+		EPRINT("samu: error: failed to initialize EWMH.\n");
 		exit(1);
 	}
 }
