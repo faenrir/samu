@@ -192,12 +192,6 @@ void button_release(XEvent *e) {
     mouse.subwindow = 0;
 }
 
-void ws_file() {
-    FILE *fp = fopen("/tmp/ws", "w");
-    fprintf(fp, "%d", ws);
-    fclose(fp);
-}
-
 void win_init(void) {
     Window *child;
     unsigned int i, n_child;
@@ -214,7 +208,6 @@ void win_init(void) {
 
     ws_save(ws);
     ws_sel(1);
-    ws_file();
 
     for win XMapWindow(d, c->w);
 
@@ -420,7 +413,6 @@ void ws_go(const Arg arg) {
     ws_sel(arg.i);
 
     if (list) win_focus(list); else cur = 0;
-    ws_file();
 
     xcb_ewmh_set_current_desktop(ewmh, 0, ws);
 }
@@ -443,7 +435,6 @@ void ws_next(const Arg arg) {
 	ws_sel(nws);
 
 	if (list) win_focus(list); else cur = 0;
-	ws_file();
 
   xcb_ewmh_set_current_desktop(ewmh, 0, ws);
 }
@@ -466,7 +457,6 @@ void ws_prev(const Arg arg) {
 	ws_sel(nws);
 
 	if (list) win_focus(list); else cur = 0;
-	ws_file();
 
   xcb_ewmh_set_current_desktop(ewmh, 0, ws);
 }
