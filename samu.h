@@ -84,14 +84,6 @@ void ws_prev(const Arg arg);
 unsigned long getcolor(const char *col);
 bool exists_win(Window w);
 
-static void ewmh_init(void);
-xcb_ewmh_connection_t         *ewmh;
-static xcb_connection_t       *con;
-static const xcb_setup_t      *setup;
-static xcb_screen_iterator_t  it;
-static xcb_screen_t           *screen;
-
 #define EPRINT(...) fprintf(stderr, __VA_ARGS__);
-
 
 static int xerror() { return 0; }

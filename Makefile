@@ -3,7 +3,7 @@ CFLAGS += -Wmissing-prototypes -Wno-unused-parameter
 PREFIX ?= /usr
 BINDIR ?= $(PREFIX)/bin
 CC     ?= gcc
-LDFLAGS = -lX11 -lxcb -lX11-xcb -lXext -lxcb-ewmh -lXinerama
+LDFLAGS = -lX11 -lxcb -lX11-xcb -lXext -lxcb-ewmh -lXinerama -lxcb-cursor -lxcb-randr
 
 all: config.h samu
 
