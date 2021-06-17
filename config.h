@@ -16,10 +16,12 @@ const char* winTr[]    = {"snap.sh", "tr", 0};
 const char* winBl[]    = {"snap.sh", "bl", 0};
 const char* winBr[]    = {"snap.sh", "br", 0};
 
+const char* winCenter[]    = {"move", "-c", 0};
+
 static struct key keys[] = {
     {MOD,      XK_q,   win_kill,   {0}},
-    {MOD,      XK_c,   win_center, {0}, true},
-    {MOD,      XK_c,    win_raise, {0}},
+    {MOD,      XK_c,   win_raise, {0}},
+    {MOD,      XK_c,   run, {.com = winCenter}},
     {MOD,      XK_f,   win_fs,     {0}},
     {MOD,      XK_f,   win_raise,     {0}},
 
@@ -89,6 +91,27 @@ static struct key keys[] = {
     {MOD|ShiftMask, XK_9, win_to_ws, {.i = 9}},
     {MOD,           XK_0, ws_go,     {.i = 10}},
     {MOD|ShiftMask, XK_0, win_to_ws, {.i = 10}},
+
+    {MOD,           XK_1, ws_go,     {.i = 11}},
+    {MOD|ShiftMask, XK_1, win_to_ws, {.i = 11}},
+    {MOD,           XK_2, ws_go,     {.i = 12}},
+    {MOD|ShiftMask, XK_2, win_to_ws, {.i = 12}},
+    {MOD,           XK_3, ws_go,     {.i = 13}},
+    {MOD|ShiftMask, XK_3, win_to_ws, {.i = 13}},
+    {MOD,           XK_4, ws_go,     {.i = 14}},
+    {MOD|ShiftMask, XK_4, win_to_ws, {.i = 14}},
+    {MOD,           XK_5, ws_go,     {.i = 15}},
+    {MOD|ShiftMask, XK_5, win_to_ws, {.i = 15}},
+    {MOD,           XK_6, ws_go,     {.i = 16}},
+    {MOD|ShiftMask, XK_6, win_to_ws, {.i = 16}},
+    {MOD,           XK_7, ws_go,     {.i = 17}},
+    {MOD|ShiftMask, XK_7, win_to_ws, {.i = 17}},
+    {MOD,           XK_8, ws_go,     {.i = 18}},
+    {MOD|ShiftMask, XK_8, win_to_ws, {.i = 18}},
+    {MOD,           XK_9, ws_go,     {.i = 19}},
+    {MOD|ShiftMask, XK_9, win_to_ws, {.i = 19}},
+    {MOD,           XK_0, ws_go,     {.i = 20}},
+    {MOD|ShiftMask, XK_0, win_to_ws, {.i = 20}},
 
     {0, XF86XK_Forward, ws_next, {.i = 1}},
     {0, XF86XK_Back, ws_prev, {.i = 1}},

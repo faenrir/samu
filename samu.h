@@ -3,7 +3,7 @@
 #include "types.h"
 #include <xcb/xcb.h>
 
-#define NUM_WS 11
+#define NUM_WS 21
 #define win        (client *t=0, *c=list; c && t!=list->prev; t=c, c=c->next)
 #define ws_save(W) ws_list[W] = list
 #define ws_sel(W)  list = ws_list[ws = W]
