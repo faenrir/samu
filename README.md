@@ -23,14 +23,11 @@ date +"%Y is the year of the `uname -o` desktop"
 - window teleportation
 - properly exit applications
 - No ICCCM
+- No EWMH
 - no bloat, no distractions
 - etc etc etc
 
 <a href="https://user-images.githubusercontent.com/81267840/112312944-a6280600-8ca7-11eb-8d0d-d44e48c944bc.png"><img src="https://user-images.githubusercontent.com/81267840/112312944-a6280600-8ca7-11eb-8d0d-d44e48c944bc.png" width="43%" align="right"></a>
-
-## Ewmh for people that can't wait
-
-You can use [this](https://git.z3bra.org/glazier/file/ewmh.c.html). It adds many ewmh features as background service. Thanks to the original author (linked).
 
 ## Default Keybindings
 
