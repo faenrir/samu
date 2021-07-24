@@ -29,7 +29,6 @@ static struct key keys[] = {
     {MOD,      XK_c,   run, {.com = winCenter}},
     {MOD,      XK_f,   win_fs,     {0}},
     {MOD,      XK_f,   win_raise,     {0}},
-    {MOD,      XK_v,   teleport,     {0}},
 
     {MOD,  XK_k,  win_half,  {.com = (const char*[]){"n"}}},
     {MOD,  XK_j,  win_half,  {.com = (const char*[]){"s"}}},
