@@ -511,7 +511,7 @@ void run(const Arg arg) {
 }
 
 void autostart(void) {
-    system("cd ~/.config/samu; ./autostart.sh &");
+    system("~/.config/samu/autostart.sh &");
 }
 
 void input_grab(Window root) {
