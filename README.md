@@ -28,6 +28,10 @@ date +"%Y is the year of the `uname -o` desktop"
 
 <a href="https://user-images.githubusercontent.com/81267840/112312944-a6280600-8ca7-11eb-8d0d-d44e48c944bc.png"><img src="https://user-images.githubusercontent.com/81267840/112312944-a6280600-8ca7-11eb-8d0d-d44e48c944bc.png" width="43%" align="right"></a>
 
+## Autostart
+
+Samu will attempt to run the `autostart.sh` file located by default in `XDG_CONFIG_HOME/berry/autostart`. Take a look at the `examples` folder for help.
+
 ## Ewmh for people that can't wait
 
 You can use [this](https://git.z3bra.org/glazier/file/ewmh.c.html). It adds many ewmh features as background service. Thanks to the original author (linked).

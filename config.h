@@ -5,16 +5,21 @@
 
 #define BORDER_COLOR_ACTIVE "#56949f"
 #define BORDER_COLOR_INACTIVE "#6e6a86"
-#define BORDER_WIDTH 2
+#define BORDER_WIDTH 0
 
 const char* snapLeft[]    = {"snap.sh", "left", 0};
 const char* snapRight[]    = {"snap.sh", "right", 0};
-const char* snapCenter[]    = {"snap.sh", "center", 0};
+const char* snapCenter[]    = {"move", "-m", 0};
 
 const char* winTl[]    = {"snap.sh", "tl", 0};
 const char* winTr[]    = {"snap.sh", "tr", 0};
 const char* winBl[]    = {"snap.sh", "bl", 0};
 const char* winBr[]    = {"snap.sh", "br", 0};
+
+const char* winTl2[]    = {"move", "-tl", 0};
+const char* winTr2[]    = {"move", "-tr", 0};
+const char* winBl2[]    = {"move", "-bl", 0};
+const char* winBr2[]    = {"move", "-br", 0};
 
 const char* winCenter[]    = {"move", "-c", 0};
 
@@ -24,11 +29,12 @@ static struct key keys[] = {
     {MOD,      XK_c,   run, {.com = winCenter}},
     {MOD,      XK_f,   win_fs,     {0}},
     {MOD,      XK_f,   win_raise,     {0}},
+    {MOD,      XK_v,   teleport,     {0}},
 
-    //{MOD,  XK_k,  win_half,  {.com = (const char*[]){"n"}}},
-    //{MOD,  XK_j,  win_half,  {.com = (const char*[]){"s"}}},
-    //{MOD,  XK_l,  win_half,  {.com = (const char*[]){"e"}}},
-    //{MOD,  XK_h,  win_half,  {.com = (const char*[]){"w"}}},
+    {MOD,  XK_k,  win_half,  {.com = (const char*[]){"n"}}},
+    {MOD,  XK_j,  win_half,  {.com = (const char*[]){"s"}}},
+    {MOD,  XK_l,  win_half,  {.com = (const char*[]){"e"}}},
+    {MOD,  XK_h,  win_half,  {.com = (const char*[]){"w"}}},
 
     {MOD, XK_Up, win_move, {.com = (const char*[]){"move",   "n"}, .i = 50}},
     {MOD, XK_Up, win_raise, {0}},
@@ -48,10 +54,10 @@ static struct key keys[] = {
     {MOD|ShiftMask, XK_Left, win_move, {.com = (const char*[]){"resize",   "w"}, .i = 50}},
     {MOD|ShiftMask, XK_Left, win_raise, {0}},
 
-    {MOD,           XK_Tab, win_next,   {0}},
-    {MOD|ShiftMask, XK_Tab, win_prev,   {0}},
-    {Mod1Mask,           XK_Tab, win_next,   {0}},
-    {Mod1Mask|ShiftMask, XK_Tab, win_prev,   {0}},
+    //{MOD,           XK_Tab, win_next,   {0}},
+    //{MOD|ShiftMask, XK_Tab, win_prev,   {0}},
+    //{Mod1Mask,           XK_Tab, win_next,   {0}},
+    //{Mod1Mask|ShiftMask, XK_Tab, win_prev,   {0}},
 
     {MOD, XK_o, run, {.com = snapLeft}},
     {MOD, XK_o, win_raise, {0}},
@@ -71,6 +77,17 @@ static struct key keys[] = {
     {MOD, XK_y, run, {.com = winBr}},
     {MOD, XK_y, win_raise, {0}},
     
+    {MOD|ShiftMask, XK_a, run, {.com = winTl2}},
+    {MOD|ShiftMask, XK_a, win_raise, {0}},
+    {MOD|ShiftMask, XK_s, run, {.com = winTr2}},
+    {MOD|ShiftMask, XK_s, win_raise, {0}},
+    {MOD|ShiftMask, XK_z, run, {.com = winBl2}},
+    {MOD|ShiftMask, XK_z, win_raise, {0}},
+    {MOD|ShiftMask, XK_x, run, {.com = winBr2}},
+    {MOD|ShiftMask, XK_x, win_raise, {0}},
+    {MOD|ShiftMask, XK_y, run, {.com = winBr2}},
+    {MOD|ShiftMask, XK_y, win_raise, {0}},
+
     {MOD,           XK_1, ws_go,     {.i = 1}},
     {MOD|ShiftMask, XK_1, win_to_ws, {.i = 1}},
     {MOD,           XK_2, ws_go,     {.i = 2}},

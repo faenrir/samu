@@ -1,0 +1,153 @@
+#
+# wm independent hotkeys
+#
+
+# launch application launcher
+super + @space
+	rofi-launcher
+
+# launch extras menu
+alt + @space
+	dbus-launch dmenu-extras
+
+# launch help menu
+super + i
+	sxhkd-help
+
+# launch power menu
+super + Escape
+	dmenu-power
+
+XF86MonBrightnessDown
+	brillo-down
+
+XF86MonBrightnessUp
+	brillo-up
+
+XF86AudioLowerVolume
+	pulse-decrease
+
+XF86AudioRaiseVolume
+	pulse-increase
+
+XF86AudioMute
+	pulse-mute
+
+# launch kitty terminal
+super + Return
+	dbus-launch kitty
+
+# launch urxvt terminal
+super + shift + Return
+	dbus-launch urxvt
+
+# launch file search
+super + e
+	dbus-launch dmenu_extended_run
+
+# launch duckduckgo search
+super + alt + @space
+	dbus-launch dmenu-ddg
+
+# launch clipboard menu
+super + comma
+	clipmenu -i -l 6 -fn IBMPlexMono-12
+
+# launch emoji menu
+super + period
+	rofi -show emoji
+
+# launch kaomoji menu
+super + slash
+	dkaomoji
+
+# launch print menu
+Print
+	dmenu-print
+
+# highlight cursor position
+shift + button1
+	find-cursor -c orange -f --size 100 --distance 10 --wait 400 --line-width 5
+
+XF86Launch5
+	dmenu-print
+
+# toggle bar
+super + b
+	barSwitch.sh
+
+# toggle compositor
+super + g
+	picomSwitch
+
+# activate focus mode
+super + shift + g
+	picomFocus
+
+# set active window transparent
+super + d
+	picomTrans.sh
+
+# lookup last copied text online
+super + v
+	word-lookup
+
+# toggle redshift
+super + r
+	rs
+
+# launch log screen
+super + shift + l
+	i3lock -B none.jpg
+
+# launch cat clock
+super + shift + c
+	xclockcat -tiecolor mediumpurple
+
+# launch monitor menu
+super + shift + p
+	arandr
+
+# manually tile windows
+super + t
+	tileTmp
+
+# grow active window
+super + equal
+	move -g
+
+# shrink active window
+super + minus
+	move -s
+
+# manually move windows outside of screen
+super + shift + m
+	move_windows.sh
+
+# launch expose view
+super + w
+	skippy-reload
+
+# toggle rainbow borders
+super + shift + r
+	rainbowSwitch
+
+# start teleporter on active window
+super + control + button1
+	teleporter
+
+# focus the next window in stack
+super + Tab
+	focus -n
+
+# cycle between last two windows in stack
+super + shift + Tab
+	focus -p
+
+# move all windows of same program up
+super + control + Up
+	invertUp
+
+# move all windows of same program down
+super + control + Down
+	invertDown

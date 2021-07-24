@@ -14,7 +14,6 @@
 #include <X11/Xlib-xcb.h>
 #include <xcb/xcb_ewmh.h>
 
-#include "types.h"
 #include "samu.h"
 #include "config.h"
 
@@ -511,6 +510,10 @@ void run(const Arg arg) {
     execvp((char*)arg.com[0], (char**)arg.com);
 }
 
+void autostart(void) {
+    system("cd ~/.config/samu; ./autostart.sh &");
+}
+
 void input_grab(Window root) {
     unsigned int i, j, modifiers[] = {0, LockMask, numlock, numlock|LockMask};
     XModifierKeymap *modmap = XGetModifierMapping(d);
@@ -556,6 +559,7 @@ int main(void) {
     XSelectInput(d,  root, SubstructureRedirectMask);
     XDefineCursor(d, root, XCreateFontCursor(d, 68));
     input_grab(root);
+    autostart();
 
     win_init();
 

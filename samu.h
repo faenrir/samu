@@ -1,6 +1,5 @@
 #include <X11/Xlib.h>
 
-#include "types.h"
 #include <xcb/xcb.h>
 
 #define NUM_WS 23
@@ -16,6 +15,8 @@
 // Taken from DWM. Many thanks. https://git.suckless.org/dwm
 #define mod_clean(mask) (mask & ~(numlock|LockMask) & \
         (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))
+
+#define abs(a) a < 0 ? -a : a
 
 typedef struct {
     const char** com;
@@ -55,6 +56,7 @@ void notify_destroy(XEvent *e);
 void notify_enter(XEvent *e);
 void notify_motion(XEvent *e);
 void run(const Arg arg);
+void autostart(void);
 void win_init(void);
 void win_add(Window w);
 void win_center(const Arg arg, bool m);
@@ -70,7 +72,6 @@ void win_lower(const Arg arg);
 void win_raise(const Arg arg);
 void win_move(const Arg arg);
 void win_move_mouse(const Arg arg);
-void win_tiler(const Arg arg);
 void win_resize(const Arg arg);
 void win_prev(const Arg arg);
 void win_next(const Arg arg);
