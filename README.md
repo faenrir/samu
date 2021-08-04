@@ -1,6 +1,6 @@
 # SAMU
 
-`samu` is my personal fork of Dylan Araps's [sowm](https://github.com/dylanaraps/sowm) with many fixes and new features. It's a tiny wm for the Xorg Server. Works on any GNU/Linux or BSD distro with X11.
+`samu` is my personal fork of cwm with opinionated changes. I previously used `sowm` as base, you can check out the sowm branch.
 
 ```bash
 date +"%Y is the year of the `uname -o` desktop"
@@ -8,57 +8,25 @@ date +"%Y is the year of the `uname -o` desktop"
 
 ## Features
 
-`samu` is getting ewmh support! Combine it with other applications following the UNIX philosophy to create a full desktop system.
+Changes were made to make cwm act more like sowm.
 
-- multi monitor support
-- window borders with active/inactive colors
-  <a href="https://user-images.githubusercontent.com/81267840/112312925-a1635200-8ca7-11eb-8505-dcab972b15b1.png"><img src="https://user-images.githubusercontent.com/81267840/112312925-a1635200-8ca7-11eb-8505-dcab972b15b1.png" width="43%" align="right"></a>
-- alternatively no window borders
-- awesome keyboard & mouse workflow
-- full keyboard-only control possible
-- focus with cursor
-- always open windows centered
-- floating only
-- tiling support through scripts
-- window teleportation
-- properly exit applications
-- No ICCCM
-- no bloat, no distractions
-- etc etc etc
-
-<a href="https://user-images.githubusercontent.com/81267840/112312944-a6280600-8ca7-11eb-8d0d-d44e48c944bc.png"><img src="https://user-images.githubusercontent.com/81267840/112312944-a6280600-8ca7-11eb-8d0d-d44e48c944bc.png" width="43%" align="right"></a>
+- no coordinates when moving windows
+- fix transparency on borders when using picom
+- slight changes to mouse behavior when opening new windows
+- added window-center option
+- added autostart
 
 ## Autostart
 
-Samu will attempt to run the `autostart.sh` file located by default in `XDG_CONFIG_HOME/berry/autostart`. Take a look at the `examples` folder for help.
-
-## Ewmh for people that can't wait
-
-You can use [this](https://git.z3bra.org/glazier/file/ewmh.c.html). It adds many ewmh features as background service. Thanks to the original author (linked).
-
-## Default Keybindings
-
-See [config.h](config.h)
-
-## Dependencies
-
-- `xlib` (_usually `libX11`_).
-- `lXinerama` (_usually `libXinerama`_).
-- `lXext` (_usually `libXext`_).
-
-## Experiments
-
-Check out the [branch](https://github.com/faenrir/samu/tree/experiments)
+Samu will attempt to run the `autostart.sh` file located by default in `XDG_CONFIG_HOME/samu/autostart.sh`.
 
 ## Installation
 
 ### Manually
 
-1. Run `make` to build `samu`.
+1. Run `make` to build `cwm`.
 2. Copy it to your bin path or run `make install`.
-3. Launch `samu` with `X`
-
-Important! `samu` does not automatically run as dbus-session!
+3. Launch `cwm` with `X`
 
 ## Three-Finger-Drag Window Movement
 
@@ -96,9 +64,3 @@ Section "InputClass"
 	Option "AccelSpeed" "0.4"
 EndSection
 ```
-
-## Thanks
-
-based on the great [sowm](https://github.com/dylanaraps/sowm)
-
-and thanks to [bunnywm](https://github.com/kiedtl/bunnywm)
