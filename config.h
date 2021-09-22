@@ -3,8 +3,8 @@
 
 #define MOD Mod4Mask
 
-#define BORDER_COLOR_ACTIVE "#56949f"
-#define BORDER_COLOR_INACTIVE "#6e6a86"
+#define BORDER_COLOR_ACTIVE "#F07078"
+#define BORDER_COLOR_INACTIVE "#000"
 #define BORDER_WIDTH 0
 
 const char* snapLeft[]    = {"snap.sh", "left", 0};
@@ -108,35 +108,10 @@ static struct key keys[] = {
     {MOD,           XK_0, ws_go,     {.i = 10}},
     {MOD|ShiftMask, XK_0, win_to_ws, {.i = 10}},
 
-    {MOD,           XK_F1, ws_go,     {.i = 11}},
-    {MOD|ShiftMask, XK_F1, win_to_ws, {.i = 11}},
-    {MOD,           XK_F2, ws_go,     {.i = 12}},
-    {MOD|ShiftMask, XK_F2, win_to_ws, {.i = 12}},
-    {MOD,           XK_F3, ws_go,     {.i = 13}},
-    {MOD|ShiftMask, XK_F3, win_to_ws, {.i = 13}},
-    {MOD,           XK_F4, ws_go,     {.i = 14}},
-    {MOD|ShiftMask, XK_F4, win_to_ws, {.i = 14}},
-    {MOD,           XK_F5, ws_go,     {.i = 15}},
-    {MOD|ShiftMask, XK_F5, win_to_ws, {.i = 15}},
-    {MOD,           XK_F6, ws_go,     {.i = 16}},
-    {MOD|ShiftMask, XK_F6, win_to_ws, {.i = 16}},
-    {MOD,           XK_F7, ws_go,     {.i = 17}},
-    {MOD|ShiftMask, XK_F7, win_to_ws, {.i = 17}},
-    {MOD,           XK_F8, ws_go,     {.i = 18}},
-    {MOD|ShiftMask, XK_F8, win_to_ws, {.i = 18}},
-    {MOD,           XK_F9, ws_go,     {.i = 19}},
-    {MOD|ShiftMask, XK_F9, win_to_ws, {.i = 19}},
-    {MOD,           XK_F10, ws_go,     {.i = 20}},
-    {MOD|ShiftMask, XK_F10, win_to_ws, {.i = 20}},
-    {MOD,           XK_F11, ws_go,     {.i = 21}},
-    {MOD|ShiftMask, XK_F11, win_to_ws, {.i = 21}},
-    {MOD,           XK_F12, ws_go,     {.i = 22}},
-    {MOD|ShiftMask, XK_F12, win_to_ws, {.i = 22}},
-
     {0, XF86XK_Forward, ws_next, {.i = 1}},
     {0, XF86XK_Back, ws_prev, {.i = 1}},
-    {Mod1Mask|ShiftMask, XK_Right, ws_next, {.i = 1}},
-    {Mod1Mask|ShiftMask, XK_Left, ws_prev, {.i = 1}},
+    {MOD|Mod1Mask, XK_Right, ws_next, {.i = 1}},
+    {MOD|Mod1Mask, XK_Left, ws_prev, {.i = 1}},
 };
 
 static struct button buttons[] = {

@@ -268,22 +268,23 @@ void win_kill(const Arg arg) {
     XSendEvent(d, cur->w, False, NoEventMask, &ev);
 }
 
-int multimonitor_center_fs (int fs) {
+int multimonitor_center_fs (int fs) { // fs = 0 -> center; fs = 1 -> fs
     if (!XineramaIsActive(d)) return 1;
-    XineramaScreenInfo *screen_info = XineramaQueryScreens(d, &monitors);
+    XineramaScreenInfo *si = XineramaQueryScreens(d, &monitors);
     for (int i = 0; i < monitors; i++) {
-        if ((cur->wx >= screen_info[i].x_org && cur->wx < screen_info[i].x_org + screen_info[i].width)
-            && (cur->wy >= screen_info[i].y_org && cur->wy < screen_info[i].y_org + screen_info[i].height)) {
+        if ((cur->wx + (cur->ww/2) >= (unsigned int)si[i].x_org
+                && cur->wx + (cur->ww/2) < (unsigned int)si[i].x_org + si[i].width)
+            && ( cur->wy + (cur->wh/2) >= (unsigned int)si[i].y_org
+                && cur->wy + (cur->wh/2) < (unsigned int)si[i].y_org + si[i].height)) {
             if (fs) {
-                XMoveResizeWindow(d, cur->w,
-                                  screen_info[i].x_org, screen_info[i].y_org,
-                                  screen_info[i].width, screen_info[i].height);
-                XConfigureWindow(d, cur->w, CWBorderWidth,
-                                  &(XWindowChanges){.border_width = 0}); 
+               XMoveResizeWindow(d, cur->w,
+                                  si[i].x_org, si[i].y_org,
+                                  si[i].width, si[i].height);
+               XConfigureWindow(d, cur->w, CWBorderWidth, &(XWindowChanges){.border_width = 0});
             } else
                 XMoveWindow(d, cur->w,
-                        screen_info[i].x_org + ((screen_info[i].width  - ww) / 2),
-                        screen_info[i].y_org + ((screen_info[i].height - wh) / 2));
+                            si[i].x_org + ((si[i].width - ww)/2),
+                            si[i].y_org + ((si[i].height -wh)/2));
             break;
         }
     }
