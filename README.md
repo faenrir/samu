@@ -21,7 +21,6 @@ date +"%Y is the year of the `uname -o` desktop"
 - floating only
 - tiling support through scripts
 - window teleportation
-- properly exit applications
 - No ICCCM
 - no bloat, no distractions
 - etc etc etc
@@ -30,7 +29,7 @@ date +"%Y is the year of the `uname -o` desktop"
 
 ## Autostart
 
-Samu will attempt to run the `autostart.sh` file located by default in `XDG_CONFIG_HOME/berry/autostart`. Take a look at the `examples` folder for help.
+Samu will attempt to run the `autostart.sh` file located by default in `XDG_CONFIG_HOME/samu/autostart`. Take a look at the `examples` folder for help.
 
 ## Ewmh for people that can't wait
 
